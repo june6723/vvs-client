@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Navbar from './components/Navbar/Navbar';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Home from './components/home/Home';
+import Feed from './components/feed/Feed';
+import Community from './components/community/Community';
+import Profile from './components/profile/Profile';
+import Friends from './components/friends/Friends'
+import LogIn from './components/Auth/LogIn';
+import SignUp from './components/Auth/SignUp';
+import Sidebar from './components/sideTab/Sidebar';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <Navbar />
+      <Sidebar />
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/feed" component={Feed} />
+        <Route path="/community" component={Community} />
+        <Route path="/profile" component={Profile} />
+        <Route path="/friends" component={Friends} />
+        <Route path="/login" component={LogIn} />
+        <Route path="/signup" component={SignUp} />
+      </Switch>
+    </BrowserRouter>
+  )
 }
 
 export default App;
