@@ -37,7 +37,7 @@ const Sidebar = () => {
         </div>
         <ul className="ml-3" onClick={toggleSidebar}>
           <li className="w-max px-3 py-1 rounded-md cursor-pointer hover:bg-orange-200 transition text-white font-bold text-lg"><Link to="/profile">My Profile</Link></li>
-          <li className="w-max px-3 py-1 rounded-md cursor-pointer hover:bg-orange-200 transition text-white font-bold text-lg"><Link to="/feed">My Feed</Link></li>
+          <li className="w-max px-3 py-1 rounded-md cursor-pointer hover:bg-orange-200 transition text-white font-bold text-lg"><Link to="/">My Feed</Link></li>
           <li className="w-max px-3 py-1 rounded-md cursor-pointer hover:bg-orange-200 transition text-white font-bold text-lg"><Link to="/community">Community</Link></li>
         </ul>
         <button className="absolute px-1 text-white h-1/6 text-lg focus:outline-none hover:bg-orange-200 rounded-md" style={{ left:"90%", top:"40%" }} onClick={toggleSidebar}><FaChevronLeft /></button>

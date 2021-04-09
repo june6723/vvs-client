@@ -15,7 +15,7 @@ const Navbar = () => {
 
   const logOut = () => {
     dispatch({ type: LOGOUT });
-    history.push('/');
+    history.go(0);
     setUser(null);
     setJwt(null);
   }
@@ -30,7 +30,7 @@ const Navbar = () => {
   }, [location])
 
   return (
-    <div className="flex items-center justify-end bg-gray-800 px-5 py-3 relative h-16">
+    <div className="flex items-center justify-end bg-gray-800 px-5 py-3 relative h-16 z-10">
       <div className="absolute inset-x-1/2">
         <Link to="/" className="text-white text-2xl">VVS</Link>
       </div>

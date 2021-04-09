@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Home = () => {
+const LoggedOutHome = () => {
   return (
     <div className="text-violet-600 text-3xl">
-      Hello, here is homepage.
+      Hello, here is Logged-Out page.
     </div>
   )
 }
 
-export default Home
+export default LoggedOutHome
