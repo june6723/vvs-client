@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { LOGOUT } from '../../constants/actionTypes';
 import decode from 'jwt-decode';
 import { FaUserCircle } from 'react-icons/fa';
 
 
 const Navbar = () => {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-  const [jwt, setJwt] = useState(JSON.parse(localStorage.getItem('token')));
+  const { profile, token } = useSelector(state => state.auth);
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
@@ -16,29 +15,25 @@ const Navbar = () => {
   const logOut = () => {
     dispatch({ type: LOGOUT });
     history.go(0);
-    setUser(null);
-    setJwt(null);
   }
 
   useEffect(() => {
-    if (jwt) {
-      const decodedToken = decode(jwt);
+    if (token) {
+      const decodedToken = decode(token);
       if (decodedToken.exp * 1000 < new Date().getTime()) logOut();
     }
-    setUser(JSON.parse(localStorage.getItem('profile')));
-    setJwt(JSON.parse(localStorage.getItem('token')));
   }, [location])
 
   return (
-    <div className="flex items-center justify-end bg-gray-800 px-5 py-3 relative h-16 z-10">
+    <div className="flex items-center justify-end bg-gray-800 px-5 py-3 fixed top-0 h-16 z-10 w-screen min-w-full">
       <div className="absolute inset-x-1/2">
         <Link to="/" className="text-white text-2xl">VVS</Link>
       </div>
       <div className="">
-        { user ? (
+        { profile ? (
           <div className="flex items-center">
-            { user.profileImg ? <img alt={user.name} src={user.profileImg} /> : <FaUserCircle className="text-white mr-1 text-3xl" /> }
-            <span className="text-white text-lg mr-3">{user.name}</span>
+            { profile.profileImg ? <img alt={profile.name} src={profile.profileImg} /> : <FaUserCircle className="text-white mr-1 text-3xl" /> }
+            <span className="text-white text-lg mr-3">{profile.name}</span>
             <button className="text-white px-4 py-0.5 bg-violet-600 hover:bg-violet-500 rounded-md text-lg" onClick={logOut}>Log Out</button>
           </div>
         ) : (

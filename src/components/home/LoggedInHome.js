@@ -8,7 +8,6 @@ const tabItems = ["My Feed", "My Communities"];
 const LoggedInHome = () => {
   const [activatedTab, setActivatedTab] = useState(tabItems[0]);
   const dispatch = useDispatch();
-  const state = useSelector(state => state);
 
   const handleTabClick = (index) => {
     setActivatedTab(tabItems[index]);
@@ -16,7 +15,6 @@ const LoggedInHome = () => {
   const handlePostModal = (e) => {
     e.preventDefault();
     dispatch(activateCreatePostModal());
-    console.log(state);
   }
 
   return (

@@ -9,6 +9,7 @@ module.exports = {
       transparent: 'transparent',
       primary: '#7B6D8D',
       secondary: '#EEA888',
+      secondaryLight: '#AA9DBB',
       ...colors
     }
   },

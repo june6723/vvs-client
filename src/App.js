@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import LoggedInHome from './components/home/LoggedInHome';
@@ -10,34 +10,44 @@ import SignUp from './components/Auth/SignUp';
 import Sidebar from './components/sideTab/Sidebar';
 import LoggedOutHome from './components/home/LoggedOutHome';
 import CreatePostModal from './components/modal/CreatePostModal';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux'; 
+import { keepAuth } from './actions/auth';
 
 const App = () => {
-  const token = JSON.parse(localStorage.getItem('token'));
+  const isLoggedIn = JSON.parse(localStorage.getItem('token'));
+  const { token } = useSelector((state) => ({ token: state.auth.token}), shallowEqual);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(keepAuth());
+  }, [])
 
   return (
     <>
       <BrowserRouter>
         <CreatePostModal />
         <Navbar />
-        <Sidebar />
-        { !token && (
+        { !isLoggedIn && (
           <>
             <Switch>
               <Route path="/" exact component={LoggedOutHome} />
               <Route path="/login" component={LogIn} />
               <Route path="/signup" component={SignUp} />
-              <Redirect to="/" />
+              <Redirect to="/login" />
             </Switch>
           </>
         )}
-        { token && (
-          <Switch>
-            <Route path="/" exact component={LoggedInHome} />
-            <Route path="/community" component={Community} />
-            <Route path="/profile" component={Profile} />
-            <Route path="/friends" component={Friends} />
-            <Redirect to="/"   />
-          </Switch>
+        { isLoggedIn && (
+          <>
+            <Sidebar />
+            <Switch>
+              <Route path="/" exact component={LoggedInHome} />
+              <Route path="/community" component={Community} />
+              <Route path="/profile" component={Profile} />
+              <Route path="/friends" component={Friends} />
+              <Redirect to="/" />
+            </Switch>
+          </>
         )}
       </BrowserRouter>
     </>

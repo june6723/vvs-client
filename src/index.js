@@ -9,6 +9,13 @@ import thunk from 'redux-thunk';
 
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
 
+const listener = () => {
+  const state = store.getState();
+  console.log(state);
+};
+
+const unsubscribe = store.subscribe(listener);
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
