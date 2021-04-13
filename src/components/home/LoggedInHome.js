@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux';
+import { getMyPosts } from '../../actions/post';
 import { activateCreatePostModal } from '../../actions/postModal';
+import UserPost from '../Post/UserPost';
 
 const tabItems = ["My Feed", "My Communities"];
 
 const LoggedInHome = () => {
   const [activatedTab, setActivatedTab] = useState(tabItems[0]);
+  const posts = useSelector(state => state.post.posts);
   const dispatch = useDispatch();
 
   const handleTabClick = (index) => {
@@ -16,6 +19,10 @@ const LoggedInHome = () => {
     e.preventDefault();
     dispatch(activateCreatePostModal());
   }
+
+  useEffect(() => {
+    dispatch(getMyPosts());
+  }, [])
 
   return (
     <div className="px-12">
@@ -41,7 +48,11 @@ const LoggedInHome = () => {
           <button onClick={handlePostModal} className="px-3 py-1 h-full bg-primary text-white rounded-md hover:opacity-80 transition">Create</button>
         </div>
         <div className="col-start-1 bg-gray-200 text-center">Suggested Friends</div>
-        <div className="col-span-2 bg-gray-200"></div>
+        <div className="col-span-2 bg-gray-200">
+          { posts && posts.map(post => (
+            <UserPost key={post._id} post={post} />
+          ))}
+        </div>
         <div className="bg-gray-200 text-center">Friends & Message</div>
       </div>
     </div>

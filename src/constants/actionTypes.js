@@ -4,7 +4,8 @@ export const LOGOUT = 'LOGOUT';
 export const KEEP = 'KEEP';
 
 // Post action types
-export const CREATE_POST = 'CREATE_POST'
+export const CREATE_POST = 'CREATE_POST';
+export const GET_MY_POSTS = 'GET_MY_POSTS';
 
 // Post modal types
 export const ACTIVATE_CREATE_POST_MODAL = 'ACTIVATE_CREATE_POST_MODAL';
