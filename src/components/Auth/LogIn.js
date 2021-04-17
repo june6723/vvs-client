@@ -27,8 +27,8 @@ const LogIn = () => {
   }
 
   return (
-    <div className="h-screen" >
-      <div className="relative h-2/3 grid grid-cols-2 mx-12 my-10 lg:mx-36 lg:my-10 " style={{boxShadow: "0px 3px 15px #00000059"}}>
+    <div className="relative top-16" style={{ maxHeight: "calc(100vh - 16rem)"}} >
+      <div className="grid grid-cols-2 mx-12 my-10 lg:mx-36 lg:my-10" style={{boxShadow: "0px 3px 15px #00000059"}}>
         <div className="from-cyan-400 to-blue-500 bg-gradient-to-r text-white py-8 px-5 hidden lg:block">
           <h3 className="text-3xl font-bold mb-7">Welcome to VVS</h3>
           <h4 className="text-xl font-semibold">A platform where you</h4>

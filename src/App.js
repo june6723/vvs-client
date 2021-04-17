@@ -23,33 +23,32 @@ const App = () => {
   }, [])
 
   return (
-    <>
-      <BrowserRouter>
-        <CreatePostModal />
-        <Navbar />
-        { !isLoggedIn && (
-          <>
-            <Switch>
-              <Route path="/" exact component={LoggedOutHome} />
-              <Route path="/login" component={LogIn} />
-              <Route path="/signup" component={SignUp} />
-              <Redirect to="/login" />
-            </Switch>
-          </>
-        )}
-        { isLoggedIn && (
-          <>
-            <Sidebar />
-            <Switch>
-              <Route path="/" exact component={LoggedInHome} />
-              <Route path="/community" component={Community} />
-              <Route path="/profile" component={Profile} />
-              <Route path="/friends" component={Friends} />
-              <Redirect to="/" />
-            </Switch>
-          </>
-        )}
-      </BrowserRouter>
+    <>  
+      { !isLoggedIn && (
+        <BrowserRouter>
+          <Navbar />
+          <Switch>
+            <Route path="/" exact component={LoggedOutHome} />
+            <Route path="/login" component={LogIn} />
+            <Route path="/signup" component={SignUp} />
+            <Redirect to="/login" />
+          </Switch>
+        </BrowserRouter>
+      )}
+      { isLoggedIn && (
+        <BrowserRouter>
+          <CreatePostModal />
+          <Navbar />
+          <Sidebar />
+          <Switch>
+            <Route path="/" exact component={LoggedInHome} />
+            <Route path="/community" component={Community} />
+            <Route path="/profile" component={Profile} />
+            <Route path="/friends" component={Friends} />
+            <Redirect to="/" />
+          </Switch>
+        </BrowserRouter>
+      )}
     </>
   )
 }
