@@ -35,8 +35,8 @@ const SignUp = () => {
   }
 
   return (
-    <div className="h-screen">
-      <div className="grid grid-cols-2 mx-36 my-10 relative h-5/6" style={{boxShadow: "0px 3px 15px #00000059"}}>
+    <div className="relative top-16 h-screen" style={{ maxHeight: "calc(100vh - 16rem)"}} >
+      <div className="grid grid-cols-2 mx-36 my-10 relative" style={{boxShadow: "0px 3px 15px #00000059"}}>
         <div className="bg-gradient-to-br from-purple-700 to-fuchsia-400 text-white py-8 px-5">
           <h3 className="text-3xl font-bold mb-7">Welcome to VVS</h3>
           <h4 className="text-xl font-semibold">A platform where you</h4>

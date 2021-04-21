@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import LoggedInHome from './components/home/LoggedInHome';
@@ -10,17 +10,27 @@ import SignUp from './components/Auth/SignUp';
 import Sidebar from './components/sideTab/Sidebar';
 import LoggedOutHome from './components/home/LoggedOutHome';
 import CreatePostModal from './components/modal/CreatePostModal';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux'; 
+import { useDispatch, useSelector } from 'react-redux'; 
 import { keepAuth } from './actions/auth';
+import decode from 'jwt-decode';
+import CreateCommunityModal from './components/modal/CreateCommunityModal';
 
 const App = () => {
-  const isLoggedIn = JSON.parse(localStorage.getItem('token'));
-  const { token } = useSelector((state) => ({ token: state.auth.token}), shallowEqual);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const dispatch = useDispatch();
+  const { token } = useSelector(state => state.auth);
 
   useEffect(() => {
     dispatch(keepAuth());
   }, [])
+
+  useEffect(() => {
+    if (token && (decode(token).exp > Date.now()/1000)) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [token])
 
   return (
     <>  
@@ -38,6 +48,7 @@ const App = () => {
       { isLoggedIn && (
         <BrowserRouter>
           <CreatePostModal />
+          <CreateCommunityModal />
           <Navbar />
           <Sidebar />
           <Switch>

@@ -27,22 +27,22 @@ const LogIn = () => {
   }
 
   return (
-    <div className="relative top-16" style={{ maxHeight: "calc(100vh - 16rem)"}} >
-      <div className="grid grid-cols-2 mx-12 my-10 lg:mx-36 lg:my-10" style={{boxShadow: "0px 3px 15px #00000059"}}>
-        <div className="from-cyan-400 to-blue-500 bg-gradient-to-r text-white py-8 px-5 hidden lg:block">
+    <div className="relative top-16 h-screen" style={{ maxHeight: "calc(100vh - 16rem)"}} >
+      <div className="grid grid-cols-2 mx-12 mt-10 sm:mx-24 md:mx-12 lg:mx-36 xl:h-full" style={{boxShadow: "0px 3px 15px #00000059"}}>
+        <div className="from-cyan-400 to-blue-500 bg-gradient-to-r text-white py-8 px-5 relative hidden md:block">
           <h3 className="text-3xl font-bold mb-7">Welcome to VVS</h3>
           <h4 className="text-xl font-semibold">A platform where you</h4>
           <h4 className="text-xl font-semibold mb-5">build your own community.</h4> 
           <h5 className="text-md">Exchange information.</h5>
           <h5 className="text-md">Sell information.</h5>
           <h5 className="text-md">Make a profit.</h5>
-          <div className="absolute bottom-16 flex">
+          <div className="absolute bottom-16 flex md:bottom-5">
             <Link to="/signup" className="text-orange-200">Create an account</Link>
           </div>
         </div>
-        <section className="col-span-2 flex justify-center w-full h-full lg:px-24 lg:py-8 lg:col-span-1">
-          <div className="flex flex-col max-w-lg items-center w-full px-16 py-8">
-            <h3 className="font-semibold text-2xl mb-7">Log In</h3>
+        <section className="col-span-2 flex justify-center w-full h-full md:col-span-1 lg:px-12 lg:py-8 ">
+          <div className="flex flex-col max-w-lg items-center w-full px-16 py-8 lg:px-4 xl:px-16">
+            <h3 className="font-semibold text-2xl mb-8">Log In</h3>
             <form className="grid w-full" onSubmit={handleSubmit}>
               <div className="flex items-center py-1 mb-5 border-b border-gray-500">
                 <IoMdMail className="mr-1 text-lg"/>

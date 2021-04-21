@@ -25,7 +25,7 @@ const LoggedInHome = () => {
   }, [])
 
   return (
-    <div className="px-12">
+    <div className="px-12 relative top-16">
       <div className="py-5 text-2xl">My Feed</div>
       <div className="border-t border-b text-2xl text-center py-10">Trending Feed</div>
       <div className="mt-8 grid grid-cols-4 gap-8">
@@ -48,7 +48,7 @@ const LoggedInHome = () => {
           <button onClick={handlePostModal} className="px-3 py-1 h-full bg-primary text-white rounded-md hover:opacity-80 transition">Create</button>
         </div>
         <div className="col-start-1 bg-gray-200 text-center">Suggested Friends</div>
-        <div className="col-span-2 bg-gray-200">
+        <div className="col-span-2">
           { posts && posts.map(post => (
             <UserPost key={post._id} post={post} />
           ))}

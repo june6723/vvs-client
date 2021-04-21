@@ -10,7 +10,7 @@ const postReducer = (state = initialState, action) => {
       const newArray = [action.newPost];
       return { ...state, posts: newArray.concat(state.posts) };
     case GET_MY_POSTS:
-      return { ...state, posts: state.posts.concat(action.data) };
+      return { ...state, posts: action.data };
     default:
       return state;
   }
