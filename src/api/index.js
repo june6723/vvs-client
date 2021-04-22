@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const LOCAL = "http://localhost:5000";
 const HEROKU = "https://vvs-backend.herokuapp.com";
-const API = axios.create({ baseURL: LOCAL });
+const API = axios.create({ baseURL: HEROKU });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem('token')) {
