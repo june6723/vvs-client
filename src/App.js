@@ -22,7 +22,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(keepAuth());
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     if (token && (decode(token).exp > Date.now()/1000)) {

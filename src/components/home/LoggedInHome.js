@@ -22,7 +22,7 @@ const LoggedInHome = () => {
 
   useEffect(() => {
     dispatch(getMyPosts());
-  }, [])
+  }, [dispatch])
 
   return (
     <div className="px-12 relative top-16">
