@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const LOCAL = "http://localhost:5000";
-// const HEROKU = "https://vvs-backend.herokuapp.com";
+const HEROKU = "https://vvs-backend.herokuapp.com";
 const API = axios.create({ baseURL: LOCAL });
 
 API.interceptors.request.use((req) => {
@@ -18,3 +18,5 @@ export const signUp = (formData) => API.post('/user/signup', formData);
 
 export const createPost = (postData) => API.post('/posts', postData);
 export const getMyPosts = () => API.get('/posts/myposts');
+
+export const createNewCommunity = (communityForm) => API.post('/communities', communityForm);

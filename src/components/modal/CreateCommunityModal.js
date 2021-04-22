@@ -1,36 +1,36 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deactivateCreateCommunityModal } from '../../actions/communityModal';
+import { createNewCommunity } from '../../actions/community';
 import { FaUserCircle, FaImages } from 'react-icons/fa';
 import { IoMdMailOpen } from 'react-icons/io';
 import { AiOutlineClose, AiOutlinePlusCircle } from 'react-icons/ai';
 import { RiVideoFill } from 'react-icons/ri';
 
-const initialForm = { title: "", text: "", tags: [] };
+const initialForm = { name: "", description: "", tags: "", requestToJoin: false };
 
 const CreateCommunityModal = () => {
-  const [postForm, setPostForm] = useState(initialForm);
+  const [communityForm, setCommunityForm] = useState(initialForm);
   const showCreateCommunityModal = useSelector(state => state.communityModal.showCreateCommunityModal);
-  const { profile } = useSelector(state => state.auth);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    setPostForm({ ...postForm, [e.target.name]: e.target.value });
+    if ([e.target.name] === 'requestToJoin') {
+      setCommunityForm({ ...communityForm, [e.target.name]: e.target.checked  })
+    } else{
+      setCommunityForm({ ...communityForm, [e.target.name]: e.target.value });
+    }
   }
 
-  const handleClick = (e) => {
+  const handleClose = (e) => {
     e.preventDefault();
     dispatch(deactivateCreateCommunityModal());
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // dispatch(createPost(postForm));
+    dispatch(createNewCommunity(communityForm));
     dispatch(deactivateCreateCommunityModal());
-  }
-  const handleCreatePost = (e) => {
-    e.preventDefault();
-    handleSubmit();
   }
 
   return (
@@ -52,22 +52,24 @@ const CreateCommunityModal = () => {
                   <input id="mainImg" type="file" className="w-0" />
                 </div>
                 <div>
-                  <input name="" type="text" />
+                  <input name="name" type="text" onChange={handleChange} />
                   <div>
-                    <textarea name="text" style={{height:"180px"}} className="border resize-none w-full px-1 rounded-md overflow-y-auto focus:outline-none" />
-                    <div></div>
+                    <textarea name="description" onChange={handleChange} style={{height:"180px"}} className="border resize-none w-full px-1 rounded-md overflow-y-auto focus:outline-none" />
+                    <div>
+                      <input name="tags" type="text" onChange={handleChange} />
+                    </div>
                   </div>
                 </div>
               </div>
               <div className="flex bg-warmGray-300">
-                <label><input type="checkbox" value="true" />Receive members upon request</label>
+                <label><input type="checkbox" name="requestToJoin" value="true" onChange={handleChange} />Receive members upon request</label>
               </div>
               <div>
                 <button type="submit" className="px-3 py-1 bg-secondary rounded-3xl text-white hover:opacity-80 transition w-28 mr-3" >Create</button>
-                <button type="submit" className="px-3 py-1 bg-secondary rounded-3xl text-white hover:opacity-80 transition w-28">Cancel</button>
+                <button onClick={handleClose} className="px-3 py-1 bg-secondary rounded-3xl text-white hover:opacity-80 transition w-28">Cancel</button>
               </div>
             </form>
-            <button onClick={handleClick} className="absolute top-1.5 right-1.5 p-1.5 rounded-full hover:bg-gray-200 focus:outline-none">
+            <button onClick={handleClose} className="absolute top-1.5 right-1.5 p-1.5 rounded-full hover:bg-gray-200 focus:outline-none">
               <AiOutlineClose className="text-2xl" />
             </button>
           </div>

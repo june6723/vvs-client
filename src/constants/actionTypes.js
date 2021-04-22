@@ -7,6 +7,9 @@ export const KEEP = 'KEEP';
 export const CREATE_POST = 'CREATE_POST';
 export const GET_MY_POSTS = 'GET_MY_POSTS';
 
+// Community action types
+export const CREATE_NEW_COMMUNITY = 'CREATE_NEW_COMMUNITY';
+
 // Post modal types
 export const ACTIVATE_CREATE_POST_MODAL = 'ACTIVATE_CREATE_POST_MODAL';
 export const DEACTIVATE_CREATE_POST_MODAL = 'DEACTIVATE_CREATE_POST_MODAL';
