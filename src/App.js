@@ -27,7 +27,7 @@ const App = () => {
     if (token && (decode(token).exp < Date.now()/1000)) {
       dispatch(logOut());
     }
-  }, [token])
+  }, [token, dispatch])
 
   return (
     <>  
