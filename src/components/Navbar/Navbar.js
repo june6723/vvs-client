@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { LOGOUT } from '../../constants/actionTypes';
 import decode from 'jwt-decode';
 import { FaUserCircle } from 'react-icons/fa';
+import { logOut } from '../../actions/auth';
 
 
 const Navbar = () => {
@@ -12,15 +12,15 @@ const Navbar = () => {
   const history = useHistory();
   const location = useLocation();
 
-  const logOut = () => {
-    dispatch({ type: LOGOUT });
+  const callLogOut = () => {
+    dispatch(logOut());
     history.go(0);
   }
 
   useEffect(() => {
     if (token) {
       const decodedToken = decode(token);
-      if (decodedToken.exp * 1000 < new Date().getTime()) logOut();
+      if (decodedToken.exp * 1000 < new Date().getTime()) callLogOut();
     }
   }, [location])
 
@@ -34,7 +34,7 @@ const Navbar = () => {
           <div className="flex items-center">
             { profile.profileImg ? <img alt={profile.name} src={profile.profileImg} /> : <FaUserCircle className="text-white mr-1 text-3xl" /> }
             <span className="text-white text-lg mr-3">{profile.name}</span>
-            <button className="text-white px-4 py-0.5 bg-violet-600 hover:bg-violet-500 rounded-md text-lg" onClick={logOut}>Log Out</button>
+            <button className="text-white px-4 py-0.5 bg-violet-600 hover:bg-violet-500 rounded-md text-lg" onClick={callLogOut}>Log Out</button>
           </div>
         ) : (
           <>

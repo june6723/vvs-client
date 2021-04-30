@@ -1,4 +1,4 @@
-import { AUTH, KEEP } from '../constants/actionTypes.js';
+import { AUTH, KEEP, LOGOUT } from '../constants/actionTypes.js';
 import * as api from '../api/index.js';
 
 export const signUp = (formData, history) => async (dispatch) => {
@@ -22,3 +22,4 @@ export const logIn = (formData, history) => async (dispatch) => {
 }
 
 export const keepAuth = () => ({ type: KEEP });
+export const logOut = () => ({ type: LOGOUT });

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import LoggedInHome from './components/home/LoggedInHome';
@@ -11,12 +11,11 @@ import Sidebar from './components/sideTab/Sidebar';
 import LoggedOutHome from './components/home/LoggedOutHome';
 import CreatePostModal from './components/modal/CreatePostModal';
 import { useDispatch, useSelector } from 'react-redux'; 
-import { keepAuth } from './actions/auth';
+import { keepAuth, logOut } from './actions/auth';
 import decode from 'jwt-decode';
 import CreateCommunityModal from './components/modal/CreateCommunityModal';
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const dispatch = useDispatch();
   const { token } = useSelector(state => state.auth);
 
@@ -25,16 +24,14 @@ const App = () => {
   }, [dispatch])
 
   useEffect(() => {
-    if (token && (decode(token).exp > Date.now()/1000)) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
+    if (token && (decode(token).exp < Date.now()/1000)) {
+      dispatch(logOut());
     }
   }, [token])
 
   return (
     <>  
-      { !isLoggedIn && (
+      { !token && (
         <BrowserRouter>
           <Navbar />
           <Switch>
@@ -45,7 +42,7 @@ const App = () => {
           </Switch>
         </BrowserRouter>
       )}
-      { isLoggedIn && (
+      { token && (
         <BrowserRouter>
           <CreatePostModal />
           <CreateCommunityModal />
