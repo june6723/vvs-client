@@ -4,7 +4,7 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import LoggedInHome from './components/home/LoggedInHome';
 import Community from './components/community/Community';
 import Profile from './components/profile/Profile';
-import Friends from './components/friends/Friends'
+import Friends from './components/friends/Friends';
 import LogIn from './components/Auth/LogIn';
 import SignUp from './components/Auth/SignUp';
 import Sidebar from './components/sideTab/Sidebar';

@@ -12,11 +12,16 @@ API.interceptors.request.use((req) => {
   return req;
 })
 
-
+// user
 export const logIn = (formData) => API.post('/user/login', formData);
 export const signUp = (formData) => API.post('/user/signup', formData);
+export const getJoinedCommunities = () => API.get(`/user/me/communities`);
+export const getUserJoinedCommunities = (userId) => API.get(`/user/${userId}/communities`);
+export const findUser = (cmd, value) => API.get(`/user/find?cmd=${cmd}&value=${value}`);
 
+// community
+export const createNewCommunity = (communityForm) => API.post('/communities', communityForm);
+
+// post
 export const createPost = (postData) => API.post('/posts', postData);
 export const getMyPosts = () => API.get('/posts/myposts');
-
-export const createNewCommunity = (communityForm) => API.post('/communities', communityForm);
