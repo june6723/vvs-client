@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import LoggedInHome from './components/home/LoggedInHome';
@@ -14,10 +14,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { keepAuth, logOut } from './actions/auth';
 import decode from 'jwt-decode';
 import CreateCommunityModal from './components/modal/CreateCommunityModal';
+import ViewCommunity from './components/community/ViewCommunity';
 
 const App = () => {
   const dispatch = useDispatch();
   const { token } = useSelector(state => state.auth);
+  // const token = JSON.parse(localStorage.getItem('token'));
+  
 
   useEffect(() => {
     dispatch(keepAuth());
@@ -50,7 +53,8 @@ const App = () => {
           <Sidebar />
           <Switch>
             <Route path="/" exact component={LoggedInHome} />
-            <Route path="/community" component={Community} />
+            <Route path="/community" exact component={Community} />
+            <Route path="/community/:communityId" component={ViewCommunity} />
             <Route path="/profile" component={Profile} />
             <Route path="/friends" component={Friends} />
             <Redirect to="/" />
