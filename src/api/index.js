@@ -2,21 +2,22 @@ import axios from 'axios';
 
 const LOCAL = "http://localhost:5000";
 const HEROKU = "https://vvs-backend.herokuapp.com";
-const API = axios.create({ baseURL: LOCAL });
+const API = axios.create({ baseURL: HEROKU });
 
-API.interceptors.request.use((req) => {
-  if (localStorage.getItem('token')) {
-    req.headers.authorization = `Bearer ${JSON.parse(localStorage.getItem('token'))}`;
+
+API.interceptors.request.use(async (req) => {
+  const currentToken = JSON.parse(localStorage.getItem('accessToken'))
+  if (currentToken) {
+    req.headers.authorization = `Bearer ${currentToken}`;
   }
-
   return req;
 })
 
 // auth
-export const logIn = (formData) => API.post('/auth/login', formData);
-export const signUp = (formData) => API.post('/auth/signup', formData);
-export const signNewToken = (refreshToken) => API.post('/auth/refresh-token', refreshToken)
-export const logOut = (refreshToken) => API.delete('/auth/logout', refreshToken)
+export const logIn = (formData) => API.post('/auth/login', formData, { withCredentials: true });
+export const signUp = (formData) => API.post('/auth/signup', formData, { withCredentials: true });
+export const signNewToken = () => API.post('/auth/refresh-token', {refreshToken:JSON.parse(localStorage.getItem('refreshToken'))}, { withCredentials: true })
+export const logOut = () => API.post('/auth/logout', {refreshToken:JSON.parse(localStorage.getItem('refreshToken'))},{ withCredentials: true })
 
 // user
 export const getJoinedCommunities = () => API.get(`/user/me/communities`);

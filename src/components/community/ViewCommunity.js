@@ -3,7 +3,7 @@ import { FaUsers } from 'react-icons/fa';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router'
-import { getOneCommunity, joinCommunityRequest } from '../../actions/community';
+import { getOneCommunity, joinCommunityRequest } from '../../actions/Community.action';
 
 const ViewCommunity = () => {
   const { communityId } = useParams();
@@ -12,7 +12,7 @@ const ViewCommunity = () => {
 
   useEffect(() => {
     dispatch(getOneCommunity(communityId));
-  }, [])
+  }, [dispatch])
 
   const handleJoin = (e) => {
     e.preventDefault();
@@ -23,7 +23,7 @@ const ViewCommunity = () => {
     <div className="pt-16">
       <div className="flex justify-between px-16 py-4 border-b border-gray-400">
         <div className="flex items-center">
-          {viewCommunity?.mainImg ? <img></img> : <FaUsers className="text-md mr-3 p-1.5 w-10 h-10 text-white bg-secondaryLight rounded-full" />}
+          {viewCommunity?.mainImg ? null : <FaUsers className="text-md mr-3 p-1.5 w-10 h-10 text-white bg-secondaryLight rounded-full" />}
           <span className="text-lg mr-1">{viewCommunity?.name}</span>
           <div className="mr-3">
             <MdKeyboardArrowUp />
