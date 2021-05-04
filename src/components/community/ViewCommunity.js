@@ -12,7 +12,7 @@ const ViewCommunity = () => {
 
   useEffect(() => {
     dispatch(getOneCommunity(communityId));
-  })
+  }, [dispatch])
 
   const handleJoin = (e) => {
     e.preventDefault();
