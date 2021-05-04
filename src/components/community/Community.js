@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { FaAngleLeft, FaEdit, FaGlobeAmericas, FaSearch } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { getJoinedCommunities, getLatestCommunities } from '../../actions/community';
-import { activateCreateCommunityModal } from '../../actions/communityModal';
+import { getJoinedCommunities, getLatestCommunities } from '../../actions/Community.action';
+import { activateCreateCommunityModal } from '../../actions/CommunityModal.action';
 import ViewCommunity from './CommunityCard';
 
 
@@ -13,10 +13,10 @@ const Community = () => {
 
   useEffect(() => {
     dispatch(getLatestCommunities(1));
-  }, [])
+  }, [dispatch])
   useEffect(() => {
     dispatch(getJoinedCommunities());
-  },[])
+  }, [dispatch])
 
   const handleCommunityModal = (e) => {
     e.preventDefault();

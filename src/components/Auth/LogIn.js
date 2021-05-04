@@ -4,7 +4,7 @@ import { IoMdMail } from 'react-icons/io'
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md'
 import { useDispatch } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
-import { logIn } from '../../actions/auth'
+import { logIn } from '../../actions/Auth.action'
 
 const LogIn = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });

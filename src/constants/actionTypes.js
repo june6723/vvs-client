@@ -1,7 +1,8 @@
-// User action types
+// Auth action types
 export const AUTH = 'AUTH';
 export const LOGOUT = 'LOGOUT';
 export const KEEP = 'KEEP';
+export const CHECK = "CHECK";
 
 // Post action types
 export const CREATE_POST = 'CREATE_POST';

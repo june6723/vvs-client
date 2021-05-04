@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deactivateCreatePostModal } from '../../actions/postModal';
+import { deactivateCreatePostModal } from '../../actions/PostModal.action';
 import { FaUserCircle, FaImages } from 'react-icons/fa';
 import { IoMdMailOpen } from 'react-icons/io';
 import { AiOutlineClose, AiOutlinePlusCircle } from 'react-icons/ai';
 import { RiVideoFill } from 'react-icons/ri';
-import { createPost } from '../../actions/post';
+import { createPost } from '../../actions/Post.action';
 
 const initialForm = { title: "", text: "", tags: [] };
 

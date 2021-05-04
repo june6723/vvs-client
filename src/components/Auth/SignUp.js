@@ -4,7 +4,7 @@ import { FaUserAlt, FaLock, FaCalendar } from 'react-icons/fa'
 import { IoMdMail } from 'react-icons/io'
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md'
 import { useDispatch } from 'react-redux';
-import { signUp } from '../../actions/auth';
+import { signUp } from '../../actions/Auth.action';
 
 const initialState = { name: '', email: '', password: '', confirmPassword: '', day: '', month: '', year: '', gender: '' };
 

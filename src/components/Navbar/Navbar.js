@@ -1,28 +1,17 @@
-import React, { useEffect } from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import decode from 'jwt-decode';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { FaUserCircle } from 'react-icons/fa';
-import { logOut } from '../../actions/auth';
+import { logOut } from '../../actions/Auth.action';
 
 
 const Navbar = () => {
-  const { profile, token } = useSelector(state => state.auth);
+  const profile = JSON.parse(localStorage.getItem('profile'))
   const dispatch = useDispatch();
-  const history = useHistory();
-  const location = useLocation();
 
   const callLogOut = () => {
-    dispatch(logOut());
-    history.go(0);
+    dispatch(logOut())
   }
-
-  useEffect(() => {
-    if (token) {
-      const decodedToken = decode(token);
-      if (decodedToken.exp * 1000 < new Date().getTime()) callLogOut();
-    }
-  }, [location])
 
   return (
     <div className="flex items-center justify-end bg-gray-800 px-5 py-3 fixed top-0 h-16 z-10 w-screen min-w-full">

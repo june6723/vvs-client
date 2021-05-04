@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux';
-import { getMyPosts } from '../../actions/post';
-import { activateCreatePostModal } from '../../actions/postModal';
+import { getMyPosts } from '../../actions/Post.action';
+import { activateCreatePostModal } from '../../actions/PostModal.action';
 import UserPost from '../Post/UserPost';
 
 const tabItems = ["My Feed", "My Communities"];

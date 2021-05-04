@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deactivateCreateCommunityModal } from '../../actions/communityModal';
-import { createNewCommunity } from '../../actions/community';
+import { deactivateCreateCommunityModal } from '../../actions/CommunityModal.action';
+import { createNewCommunity } from '../../actions/Community.action';
 import { FaCheck } from 'react-icons/fa';
 import { AiOutlineClose } from 'react-icons/ai';
 import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im'

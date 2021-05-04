@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import auth from './auth';
-import postModal from './postModal';
-import communityModal from './communityModal';
-import post from './post'
-import community from './community';
+import auth from './Auth.reducer';
+import postModal from './PostModal.reducer';
+import communityModal from './CommunityModal.reducer';
+import post from './Post.reducer'
+import community from './Community.reducer';
 
 const reducers = combineReducers({
   auth,
