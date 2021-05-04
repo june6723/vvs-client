@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FaAngleLeft, FaEdit, FaGlobeAmericas, FaSearch } from 'react-icons/fa';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getJoinedCommunities, getLatestCommunities } from '../../actions/community';
 import { activateCreateCommunityModal } from '../../actions/communityModal';
+import ViewCommunity from './CommunityCard';
 
 
 const Community = () => {
   const dispatch = useDispatch();
+  const latest = useSelector((state) => state.community.latestCommunities);
+  const joined = useSelector((state) => state.community.joinedCommunities);
+
+  useEffect(() => {
+    dispatch(getLatestCommunities(1));
+  }, [])
+  useEffect(() => {
+    dispatch(getJoinedCommunities());
+  },[])
 
   const handleCommunityModal = (e) => {
     e.preventDefault();
@@ -42,7 +53,22 @@ const Community = () => {
             </div>
           </div>
           <div className="mt-3 px-5 py-1 border rounded-sm">
-            
+            {joined?.map((community) => (
+              <ViewCommunity key={community._id} data={community} />
+            ))}
+          </div>
+        </div>
+        <div className="mt-8 px-16 w-full">
+          <div className="flex justify-between items-center">
+            <div className="flex text-2xl font-semibold items-center">
+              Latest Communities
+              <FaAngleLeft className="ml-1" />
+            </div>
+          </div>
+          <div className="mt-3 px-5 py-1 border rounded-sm">
+            {latest?.map((community) => (
+              <ViewCommunity key={community._id} data={community} />
+            ))}
           </div>
         </div>
       </div>
