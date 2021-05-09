@@ -19,13 +19,10 @@ const ViewCommunity = () => {
 
   useEffect(() => {
     dispatch(getOneCommunity(communityId));
-<<<<<<< HEAD
-=======
     dispatch(getCommunityPosts(communityId))
     return (() => {
       dispatch({ type: CLEAR_VIEW_COMMUNITY })
     })
->>>>>>> release/0.1.1
   }, [dispatch])
 
   const handleJoin = (e) => {
