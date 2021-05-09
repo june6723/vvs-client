@@ -3,7 +3,7 @@ import { FaAngleLeft, FaEdit, FaGlobeAmericas, FaSearch } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { getJoinedCommunities, getLatestCommunities } from '../../actions/Community.action';
 import { activateCreateCommunityModal } from '../../actions/CommunityModal.action';
-import ViewCommunity from './CommunityCard';
+import CommunityCard from './CommunityCard';
 
 
 const Community = () => {
@@ -53,9 +53,11 @@ const Community = () => {
             </div>
           </div>
           <div className="mt-3 px-5 py-1 border rounded-sm">
-            {joined?.map((community) => (
-              <ViewCommunity key={community._id} data={community} />
-            ))}
+            <div className="grid grid-cols-5 px-10 gap-3">
+              {joined?.map((community) => (
+                <CommunityCard key={community._id} data={community} />
+              ))}
+            </div>
           </div>
         </div>
         <div className="mt-8 px-16 w-full">
@@ -67,7 +69,7 @@ const Community = () => {
           </div>
           <div className="mt-3 px-5 py-1 border rounded-sm">
             {latest?.map((community) => (
-              <ViewCommunity key={community._id} data={community} />
+              <CommunityCard key={community._id} data={community} />
             ))}
           </div>
         </div>

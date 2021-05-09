@@ -4,7 +4,9 @@ import {
   GET_LATEST_COMMUNITIES,
   GET_ONE_COMMUNITY,
   GET_COMMUNITY_POSTS,
-  JOIN_COMMUNITY
+  JOIN_COMMUNITY,
+  CLEAR_VIEW_COMMUNITY,
+  CREATE_COMMUNITY_POST
 } from '../constants/actionTypes.js';
 
 const initialState = {
@@ -31,6 +33,11 @@ const communityReducer = (state = initialState, action) => {
       return { ...state, communityPosts: action.communityPosts };
     case JOIN_COMMUNITY:
       return { ...state, viewCommunity: action.updatedCommunity}
+    case CLEAR_VIEW_COMMUNITY:
+      return { ...state, viewCommunity: null}
+    case CREATE_COMMUNITY_POST:
+      const newArray = [action.newPost];
+      return { ...state, communityPosts: newArray.concat(state.communityPosts) };
     default:
       return state;
   }
