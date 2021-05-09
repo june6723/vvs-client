@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deactivateCreateCommunityModal } from '../../actions/CommunityModal.action';
 import { createNewCommunity } from '../../actions/Community.action';
 import { FaCheck } from 'react-icons/fa';
 import { AiOutlineClose } from 'react-icons/ai';
 import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im'
+import { FiUpload } from 'react-icons/fi'
 
-const initialForm = { name: "", description: "", tags: "", requestToJoin: false };
+const initialForm = { name: "", description: "", tags: "", requestToJoin: false, mainImg: null };
 
 const CreateCommunityModal = () => {
+  const [uploadedImg, setUploadedImg] = useState("");
   const [communityForm, setCommunityForm] = useState(initialForm);
   const showCreateCommunityModal = useSelector(state => state.communityModal.showCreateCommunityModal);
   const dispatch = useDispatch();
@@ -18,6 +20,9 @@ const CreateCommunityModal = () => {
   }
   const handleDivContent = (e) => {
     setCommunityForm({ ...communityForm, description: e.target.innerHTML });
+  }
+  const handleFile = (e) => {
+    setCommunityForm({ ...communityForm, mainImg: e.target.files[0]})
   }
   const handleRequest = () => {
     setCommunityForm((prev) => ({ ...communityForm, requestToJoin: !prev.requestToJoin }));
@@ -35,6 +40,16 @@ const CreateCommunityModal = () => {
     dispatch(deactivateCreateCommunityModal());
   }
 
+  useEffect(() => {
+    if (communityForm.mainImg) {
+      const reader = new FileReader()
+      reader.addEventListener("load", () => { 
+        setUploadedImg(reader.result) 
+      }, false)
+      reader.readAsDataURL(communityForm.mainImg)
+    }
+  }, [communityForm.mainImg])
+  
   return (
     <>
       {showCreateCommunityModal ? (
@@ -45,13 +60,18 @@ const CreateCommunityModal = () => {
                 Create Your Community
               </div>
               <div className="flex mt-5">
-                <div className="">
+                <div className="flex items-center justify-center">
                   <label htmlFor="mainImg">
-                    <div className="bg-gray-200 rounded-md p-3 w-52 h-full">
-                      Main Image
+                    <div className="bg-gray-200 rounded-md w-52 h-72 overflow-hidden flex justify-center items-center cursor-pointer hover:opacity-80">     
+                      { communityForm.mainImg ?  
+                        <img src={uploadedImg} alt="Main image" className="object-cover w-full h-full" /> : 
+                        <div className="w-3/4 h-1/2 flex justify-center items-center">
+                          <FiUpload className="w-3/4 h-1/2 opacity-30" />
+                        </div> 
+                      }
                     </div>
                   </label>
-                  <input id="mainImg" type="file" className="w-0" />
+                  <input id="mainImg" name="mainImg" type="file" onChange={handleFile} className="w-0" />
                 </div>
                 <div className="ml-5 w-full">
                   <div className="flex items-center relative">
