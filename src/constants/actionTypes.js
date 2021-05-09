@@ -4,6 +4,9 @@ export const LOGOUT = 'LOGOUT';
 export const KEEP = 'KEEP';
 export const CHECK = "CHECK";
 
+// User action types
+export const FIND_USER = 'FIND_USER';
+
 // Post action types
 export const CREATE_POST = 'CREATE_POST';
 export const GET_MY_POSTS = 'GET_MY_POSTS';
@@ -15,6 +18,8 @@ export const GET_JOINED_COMMUNITIES = 'GET_JOINED_COMMUNITIES';
 export const GET_ONE_COMMUNITY = 'GET_ONE_COMMUNITY';
 export const GET_COMMUNITY_POSTS = 'GET_COMMUNITY_POSTS';
 export const JOIN_COMMUNITY = 'JOIN_COMMUNITY'; 
+export const CLEAR_VIEW_COMMUNITY = 'CLEAR_VIEW_COMMUNITY';
+export const CREATE_COMMUNITY_POST = 'CREATE_COMMUNITY_POST'
 
 
 // Post modal types

@@ -5,13 +5,15 @@ import { FaUserCircle, FaImages } from 'react-icons/fa';
 import { IoMdMailOpen } from 'react-icons/io';
 import { AiOutlineClose, AiOutlinePlusCircle } from 'react-icons/ai';
 import { RiVideoFill } from 'react-icons/ri';
-import { createPost } from '../../actions/Post.action';
+import { createCommunityPost, createPost } from '../../actions/Post.action';
 
 const initialForm = { title: "", text: "", tags: [] };
 
 const CreatePostModal = () => {
   const [postForm, setPostForm] = useState(initialForm);
   const showCreatePostModal = useSelector(state => state.postModal.showCreatePostModal);
+  const viewCommunity = useSelector(state => state.community.viewCommunity);
+  const community = viewCommunity?._id;
   const { profile } = useSelector(state => state.auth);
   const dispatch = useDispatch();
 
@@ -26,7 +28,11 @@ const CreatePostModal = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createPost(postForm));
+    if (community) {
+      dispatch(createCommunityPost({ ...postForm, community }));
+    } else {
+      dispatch(createPost({ ...postForm, community }));
+    }
     dispatch(deactivateCreatePostModal());
   }
   const handleCreatePost = (e) => {

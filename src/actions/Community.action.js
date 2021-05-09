@@ -3,6 +3,12 @@ import { CREATE_NEW_COMMUNITY, GET_COMMUNITY_POSTS, GET_JOINED_COMMUNITIES, GET_
 
 export const createNewCommunity = (communityForm) => async (dispatch) => {
   try {
+    if (communityForm.mainImg) {
+      const formBody = new FormData()
+      formBody.append('file', communityForm.mainImg)
+      const { data } = await api.upload(formBody)
+      communityForm.mainImg = data.url
+    }
     const { data: newCommunity } = await api.createNewCommunity(communityForm);
     dispatch({ type: CREATE_NEW_COMMUNITY, newCommunity });
   } catch (error) {
@@ -39,8 +45,8 @@ export const getOneCommunity = (value) => async (dispatch) => {
 
 export const getCommunityPosts = (communityId) => async (dispatch) => {
   try {
-    const communityPosts = await api.getCommunityPosts(communityId);
-    dispatch({ type: GET_COMMUNITY_POSTS, communityPosts });
+    const { data } = await api.getCommunityPosts(communityId);
+    dispatch({ type: GET_COMMUNITY_POSTS, communityPosts: data });
   } catch (error) {
     console.log(error);
   }

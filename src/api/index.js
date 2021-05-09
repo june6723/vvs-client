@@ -19,6 +19,9 @@ export const signUp = (formData) => API.post('/auth/signup', formData, { withCre
 export const signNewToken = () => API.post('/auth/refresh-token', {refreshToken:JSON.parse(localStorage.getItem('refreshToken'))}, { withCredentials: true })
 export const logOut = () => API.post('/auth/logout', {refreshToken:JSON.parse(localStorage.getItem('refreshToken'))},{ withCredentials: true })
 
+// upload
+export const upload = (formData) => API.post('/upload', formData)
+
 // user
 export const getJoinedCommunities = () => API.get(`/user/me/communities`);
 export const getUserJoinedCommunities = (userId) => API.get(`/user/${userId}/communities`);
@@ -34,5 +37,4 @@ export const latestCommunities = (page, lastId) => lastId ? API.get(`/communitie
 
 // post
 export const createPost = (postData) => API.post('/posts', postData);
-export const createCommunityPost = (postData, communityId) => API.post(`/posts/community/${communityId}`, postData);
 export const getMyPosts = () => API.get('/posts/myposts');
