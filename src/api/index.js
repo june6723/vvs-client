@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const LOCAL = "http://localhost:5000";
 const HEROKU = "https://vvs-backend.herokuapp.com";
-const API = axios.create({ baseURL: HEROKU });
+const API = axios.create({ baseURL: LOCAL });
 
 
 API.interceptors.request.use(async (req) => {
@@ -38,3 +38,5 @@ export const latestCommunities = (page, lastId) => lastId ? API.get(`/communitie
 // post
 export const createPost = (postData) => API.post('/posts', postData);
 export const getMyPosts = () => API.get('/posts/myposts');
+export const likePost = (postId) => API.patch(`/posts/${postId}/likes`)
+export const dislikePost = (postId) => API.patch(`/posts/${postId}/dislikes`)

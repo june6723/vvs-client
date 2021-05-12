@@ -1,12 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaUser } from 'react-icons/fa'
 import moment from 'moment'
-import { AiOutlineDislike, AiOutlineLike } from 'react-icons/ai'
+import { AiFillDislike, AiFillLike, AiOutlineDislike, AiOutlineLike } from 'react-icons/ai'
+import { useDispatch } from 'react-redux'
+import { likePost, dislikePost } from '../../actions/Post.action'
 
 const CommunityPost = ({ post }) => {
+  const dispatch = useDispatch()
+
+  const { id } = JSON.parse(localStorage.getItem('profile'))
+  console.log(id)
   const { creator } = post
-  const { name, profileImg } = typeof creator === Object ? creator : JSON.parse(localStorage.getItem('profile'))
+  const { name, profileImg } = creator
   const agoTime = moment(post.createdAt).fromNow();
+
+  const [likeStatus, setLikeStatus] = useState({
+    likesCnt: post.likes.length,
+    liked: post.likes.includes(id),
+    dislikesCnt: post.dislikes.length,
+    disliked: post.dislikes.includes(id)
+  })
+
+  const handleLike = (e) => {
+    e.preventDefault()
+    dispatch(likePost(post._id))
+    setLikeStatus((prevState) => ({ ...prevState, 
+      liked:!prevState.liked, 
+      likesCnt: prevState.liked ? prevState.likesCnt-1 : prevState.likesCnt+1 
+    }))
+  }
+
+  const handleDislike = (e) => {
+    e.preventDefault()
+    dispatch(dislikePost(post._id))
+    setLikeStatus((prevState) => ({ ...prevState, 
+      disliked:!prevState.disliked, 
+      dislikesCnt: prevState.disliked ? prevState.dislikesCnt-1 : prevState.dislikesCnt+1 
+    }))
+  }
   
   return (
     <div className="mb-3">
@@ -24,8 +55,10 @@ const CommunityPost = ({ post }) => {
       </div>
       <div className="flex items-center">
         <div className="flex items-center my-1 px-2 border-r-2 border-gray-400">
-          <AiOutlineLike />
-          <AiOutlineDislike />
+          { likeStatus.liked ? <AiFillLike onClick={handleLike} /> : <AiOutlineLike onClick={handleLike} /> }
+          { <span>{likeStatus.likesCnt}</span> }
+          { likeStatus.disliked ? <AiFillDislike onClick={handleDislike} /> : <AiOutlineDislike onClick={handleDislike} /> }
+          { <span>{likeStatus.dislikesCnt}</span> }
         </div>
         <div className="px-2">Comment</div>
       </div>
