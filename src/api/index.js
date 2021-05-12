@@ -38,3 +38,5 @@ export const latestCommunities = (page, lastId) => lastId ? API.get(`/communitie
 // post
 export const createPost = (postData) => API.post('/posts', postData);
 export const getMyPosts = () => API.get('/posts/myposts');
+export const likePost = (postId) => API.patch(`/posts/${postId}/likes`)
+export const dislikePost = (postId) => API.patch(`/posts/${postId}/dislikes`)
