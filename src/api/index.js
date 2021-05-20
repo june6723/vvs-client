@@ -40,3 +40,10 @@ export const createPost = (postData) => API.post('/posts', postData);
 export const getMyPosts = () => API.get('/posts/myposts');
 export const likePost = (postId) => API.patch(`/posts/${postId}/likes`)
 export const dislikePost = (postId) => API.patch(`/posts/${postId}/dislikes`)
+
+// comment
+export const getComments = (postId) => API.get(`/comments/post/${postId}`)
+export const createComment = (commentForm) => API.post('/comments', commentForm)
+export const createReply = (commentForm) => API.post(`/comments/reply`, commentForm)
+export const likeComment = (commentId) => API.patch(`/comments/${commentId}`)
+export const getReplies = (commentId) => API.get(`/comments/${commentId}`)

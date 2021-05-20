@@ -11,6 +11,13 @@ export const FIND_USER = 'FIND_USER';
 export const CREATE_POST = 'CREATE_POST';
 export const GET_MY_POSTS = 'GET_MY_POSTS';
 
+// Comment action types 
+export const GET_COMMENTS = 'GET_COMMENTS'
+export const CREATE_COMMENT = 'CREATE_COMMENT'
+export const CREATE_REPLY = 'CREATE_REPLY'
+export const LIKE_COMMENT = 'LIKE_COMMENT'
+export const GET_REPLIES = 'GET_REPLIES'
+
 // Community action types
 export const CREATE_NEW_COMMUNITY = 'CREATE_NEW_COMMUNITY';
 export const GET_LATEST_COMMUNITIES = 'GET_LATEST_COMMUNITIES';

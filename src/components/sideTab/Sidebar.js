@@ -31,7 +31,7 @@ const Sidebar = () => {
   }, [activated])
 
   return (
-    <div className="relative z-10">
+    <div className="relative z-50">
       <div className="sidebarBtn fixed w-6 h-36 top-56 rounded-r-2xl bg-secondary cursor-pointer transition duration-200 transform hover:bg-orange-200" onClick={toggleSidebar}></div>
       <nav className="sidebar bg-secondary p-6 w-1/4 h-5/6 fixed top-16 transition transform -translate-x-full" >
         <div className="relative flex items-center px-3 py-1 text-white rounded-3xl bg-warmGray-200 bg-opacity-50 mb-5">

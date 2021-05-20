@@ -4,6 +4,8 @@ import postModal from './PostModal.reducer';
 import communityModal from './CommunityModal.reducer';
 import post from './Post.reducer'
 import community from './Community.reducer';
+import comment from './Comment.reducer';
+import reply from './Reply.reducer';
 // import user from './User.reducer';
 
 const reducers = combineReducers({
@@ -12,7 +14,9 @@ const reducers = combineReducers({
   communityModal,
   post,
   community,
-  // user
+  // user,
+  comment,
+  reply
 })
 
 export default reducers;
