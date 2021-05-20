@@ -34,7 +34,7 @@ const communityReducer = (state = initialState, action) => {
     case JOIN_COMMUNITY:
       return { ...state, viewCommunity: action.updatedCommunity}
     case CLEAR_VIEW_COMMUNITY:
-      return { ...state, viewCommunity: null}
+      return { ...state, viewCommunity: null, communityPosts: null }
     case CREATE_COMMUNITY_POST:
       const newArray = [action.newPost];
       return { ...state, communityPosts: newArray.concat(state.communityPosts) };
