@@ -34,7 +34,8 @@ const CommunityPostComment = ({ comment }) => {
   return (
     <div className="">
       <div key={comment._id} className="flex mt-2" >
-          { comment.creator.profileImg? <img /> : <FaUserCircle className="text-primary w-7 h-7 mr-1.5" /> }
+          { comment.creator.profileImg? <img src={comment.creator.profileImg} alt={comment.creator.name} className="w-8 h-8 mr-1.5 rounded-lg bg-cover" /> : 
+            <FaUserCircle className="text-primary w-7 h-7 mr-1.5" /> }
           <div className="flex flex-col w-full">
             <div className="max-w-max">
               <div className="text-sm bg-gray-200 px-2 py-1 rounded-lg">

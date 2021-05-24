@@ -1,6 +1,6 @@
-import { AUTH, CHECK, KEEP, LOGOUT } from '../constants/actionTypes';
+import { AUTH, AUTH_LOADING, CHECK, DONE, KEEP, LOGOUT } from '../constants/actionTypes';
 
-const authReducer = (state = { profile: null, isLoggedIn: false, isLoading: true, isFirstLoading:true}, action) => {
+const authReducer = (state = { profile: null, isLoggedIn: undefined, isLoading: true }, action) => {
   switch (action.type) {
     case AUTH :
       const { profile, accessToken, accessTokenExp, refreshToken } = action?.data
@@ -12,13 +12,13 @@ const authReducer = (state = { profile: null, isLoggedIn: false, isLoading: true
     case LOGOUT :
       localStorage.clear()
       return { ...state, profile: null, isLoggedIn: false, isLoading: false };
-    case KEEP:
-      return { ...state, profile, isLoggedIn: true, isLoading: false };
     case CHECK:
-      if (localStorage.getItem('accessToken')) return { ...state, isLoggedIn: true, isFirstLoading: false }
-      return { ...state, isLoggedIn: false, isLoading:false, isFirstLoading: false }
-    case "DONE":
+      if (localStorage.getItem('accessToken')) return { ...state, isLoggedIn: true }
+      return { ...state, isLoggedIn: false }
+    case DONE:
       return { ...state, isLoading: false}
+    case AUTH_LOADING:
+      return { ...state, isLoading: true}
     default:
       return state
   }

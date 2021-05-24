@@ -3,9 +3,13 @@ export const AUTH = 'AUTH';
 export const LOGOUT = 'LOGOUT';
 export const KEEP = 'KEEP';
 export const CHECK = "CHECK";
+export const DONE = "DONE"
+export const AUTH_LOADING = "AUTH_LOADING"
 
 // User action types
 export const FIND_USER = 'FIND_USER';
+export const FIND_ME = 'FIND_ME'
+export const UPLOAD_PROFILE_IMG = 'UPLOAD_PROFILE_IMG'
 
 // Post action types
 export const CREATE_POST = 'CREATE_POST';

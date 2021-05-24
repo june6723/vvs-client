@@ -1,11 +1,16 @@
-import { AUTH, LOGOUT } from '../constants/actionTypes.js';
+import { AUTH, AUTH_LOADING, LOGOUT } from '../constants/actionTypes.js';
 import * as api from '../api/index.js';
 
 export const signUp = (formData, history) => async (dispatch) => {
   try {
     const { data } = await api.signUp(formData);
-    dispatch({ type: AUTH, data });
-    history.push('/');
+    if(data.ok) {
+      dispatch({ type: AUTH_LOADING })
+      history.push('/');
+      dispatch({ type: AUTH, data });
+    } else {
+
+    }
   } catch (error) {
     console.log(error);
   }
@@ -14,8 +19,13 @@ export const signUp = (formData, history) => async (dispatch) => {
 export const logIn = (formData, history) => async (dispatch) => {
   try {
     const { data } = await api.logIn(formData);
-    dispatch({ type: AUTH, data });
-    history.push('/');
+    if(data.ok) {
+      dispatch({ type: AUTH_LOADING })
+      history.push('/');
+      dispatch({ type: AUTH, data });
+    } else {
+      
+    }
   } catch (error) {
     console.log(error);
   }

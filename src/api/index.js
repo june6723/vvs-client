@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const LOCAL = "http://localhost:5000";
 const HEROKU = "https://vvs-backend.herokuapp.com";
-const API = axios.create({ baseURL: LOCAL });
+const API = axios.create({ baseURL: HEROKU });
 
 
 API.interceptors.request.use(async (req) => {
@@ -26,6 +26,7 @@ export const upload = (formData) => API.post('/upload', formData)
 export const getJoinedCommunities = () => API.get(`/user/me/communities`);
 export const getUserJoinedCommunities = (userId) => API.get(`/user/${userId}/communities`);
 export const findUser = (cmd, value) => API.get(`/user/find?cmd=${cmd}&value=${value}`);
+export const uploadProfileImg = (url) => API.post('/user/profile-image', { url })
 
 // community
 export const createNewCommunity = (communityForm) => API.post('/communities', communityForm);
