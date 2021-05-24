@@ -6,7 +6,7 @@ import post from './Post.reducer'
 import community from './Community.reducer';
 import comment from './Comment.reducer';
 import reply from './Reply.reducer';
-// import user from './User.reducer';
+import user from './User.reducer';
 
 const reducers = combineReducers({
   auth,
@@ -14,7 +14,7 @@ const reducers = combineReducers({
   communityModal,
   post,
   community,
-  // user,
+  user,
   comment,
   reply
 })

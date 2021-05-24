@@ -9,10 +9,10 @@ import LoggedInHome from '../components/home/LoggedInHome'
 import CreateCommunityModal from '../components/modal/CreateCommunityModal'
 import CreatePostModal from '../components/modal/CreatePostModal'
 import Navbar from '../components/Navbar/Navbar'
-import Profile from '../components/profile/Profile'
 import Sidebar from '../components/sideTab/Sidebar'
 import decode from 'jwt-decode'
 import Loading from '../components/etc/Loading'
+import ProfileRoute from './Profile.route'
 
 const LoggedIn = () => {
   const dispatch = useDispatch()
@@ -49,7 +49,7 @@ const LoggedIn = () => {
         <Route path="/" exact component={LoggedInHome} />
         <Route path="/community" exact component={Community} />
         <Route path="/community/:communityId" component={ViewCommunity} />
-        <Route path="/profile" component={Profile} />
+        <Route path="/:name" component={ProfileRoute} />
         <Route path="/friends" component={Friends} />
         <Redirect to="/" />
       </Switch>

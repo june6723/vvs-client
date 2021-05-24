@@ -7,6 +7,7 @@ import { likePost, dislikePost } from '../../actions/Post.action'
 import CommunityPostComment from './CommunityPostComment'
 import { createComment, getComments } from '../../actions/Comment.actions'
 import LoadingSm from '../etc/LoadingSm'
+import { Link } from 'react-router-dom'
 
 const CommunityPost = ({ post }) => {
   const dispatch = useDispatch()
@@ -64,9 +65,11 @@ const CommunityPost = ({ post }) => {
     <div className="mb-3">
       <div className="w-full border-2 border-gray-300 rounded-md relative p-1.5">
         <div className="flex items-center">
-          { profileImg ? <img className="" src={profileImg} alt={name} /> : 
-            <FaUser className="text-white bg-primary rounded-md p-1 w-9 h-9 mr-2" />}
-          <span className="font-medium">{name}</span>
+          <Link to={`/${name}`} className="hover:bg-opacity-90 mr-2 bg-primary rounded-md ">
+            { profileImg ? <img className="" src={profileImg} alt={name} className="w-10 h-10 rounded-lg bg-cover" /> : 
+              <FaUser className="text-white p-1 w-9 h-9" />}
+          </Link>
+          <Link to={`/${name}`} className="hover:text-gray-600"><span className="font-medium">{name}</span></Link>
         </div>
         <div className="px-12">
           <div className="font-light">{post.text}</div>

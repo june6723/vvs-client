@@ -26,6 +26,7 @@ export const upload = (formData) => API.post('/upload', formData)
 export const getJoinedCommunities = () => API.get(`/user/me/communities`);
 export const getUserJoinedCommunities = (userId) => API.get(`/user/${userId}/communities`);
 export const findUser = (cmd, value) => API.get(`/user/find?cmd=${cmd}&value=${value}`);
+export const uploadProfileImg = (url) => API.post('/user/profile-image', { url })
 
 // community
 export const createNewCommunity = (communityForm) => API.post('/communities', communityForm);

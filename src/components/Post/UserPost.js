@@ -11,7 +11,8 @@ const UserPost = ({ post }) => {
   return (
     <div className="grid grid-cols-8 bg-primary rounded-xl mb-4 pt-3">
       <div className="col-span-1 flex flex-col items-center justify-center mr-2 ml-3">
-        { profile?.profileImg ? <img alt={profile.name} src={profile.profileImg} /> : <FaUserCircle className="text-white text-5xl" /> }
+        { profile?.profileImg ? <img alt={profile.name} src={profile.profileImg} className="w-12 h-12 rounded-full border-2 border-white" /> : 
+          <FaUserCircle className="text-white text-5xl" /> }
         <span className="text-sm text-white mt-1">{profile?.name}</span>
       </div>
       <div className="col-span-7 bg-white rounded-xl p-3 mr-3">

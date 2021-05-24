@@ -6,14 +6,14 @@ import LoggedIn from './routes/LoggedIn';
 import LoggedOut from './routes/LoggedOut';
 
 const App = () => {
-  const { isLoggedIn, isFirstLoading } = useSelector(state => state.auth)
+  const { isLoggedIn } = useSelector(state => state.auth)
   const dispatch = useDispatch()
-  
+
   useEffect(() => {
     dispatch({ type: CHECK })
   }, [dispatch])
 
-  if(isFirstLoading) return <Loading />
+  if(isLoggedIn === undefined) return <Loading />
   return (
     isLoggedIn ? <LoggedIn /> : <LoggedOut />
   )
