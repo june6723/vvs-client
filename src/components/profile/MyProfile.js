@@ -57,7 +57,7 @@ const MyProfile = ({ id }) => {
         </div>
       </div>
       <div className="border-t border-gray-400">
-
+        
       </div>
       { profileImgModal && <ProfileImgModal setProfileImgModal={setProfileImgModal} profileImg={me?.profileImg} /> }
     </div>

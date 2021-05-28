@@ -9,6 +9,14 @@ export const findUserById = (userId) => async (dispatch) => {
     console.log(error)
   }
 }
+export const findUserByName = (name) => async (dispatch) => {
+  try {
+    const { data } = await api.findUser("name", name)
+    dispatch({ type: FIND_USER, data });
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 export const findMe = (userId) => async (dispatch) => {
   try {
@@ -27,6 +35,15 @@ export const uploadProfileImg = (imgFile) => async (dispatch) => {
     const url = result.data.url
     const { data } = await api.uploadProfileImg(url)
     dispatch({ type: UPLOAD_PROFILE_IMG, data })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const followUser = (userId) => async (dispatch) => {
+  try {
+    const { data } = await api.followUser(userId)
+    dispatch({ type: FIND_USER, data })
   } catch (error) {
     console.log(error)
   }
