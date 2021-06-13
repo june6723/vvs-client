@@ -9,16 +9,34 @@ const UserProfile = ({ name }) => {
   const myProfile = JSON.parse(localStorage.getItem('profile'))
   const myId = myProfile.id
   const dispatch = useDispatch()
+  const [isFollowing, setIsFollowing] = useState()
+  const [followerLength, setFollowerLength] = useState()
+  const followers = profile && profile.follower
 
   useEffect(() => {
     dispatch(findUserByName(name))
   }, [dispatch, name])
 
+  useEffect(() => {
+    setFollowerLength(followers?.length)
+    if(followers?.includes(myId)) {
+      setIsFollowing(true)
+    } else {
+      setIsFollowing(false)
+    }
+  }, [followers])
 
   const handleFollow = (e) => {
     e.preventDefault()
     dispatch(followUser(profile._id))
+    if(isFollowing) {
+      setFollowerLength((prev) => prev-1)
+    } else {
+      setFollowerLength((prev) => prev+1)
+    }
+    setIsFollowing((prev) => !prev)
   }
+
 
   if(!profile) return <Loading />
   return (
@@ -37,10 +55,10 @@ const UserProfile = ({ name }) => {
                   <FaUserCircle className="w-10 h-10 border border-white rounded-full bg-white text-primary" /> }
               </div>
               <h3>{profile?.name}</h3>
-              <span>Followers ({profile?.follower?.length})</span>
+              <span>Followers ({followerLength})</span>
             </div>
             <div className="absolute bottom-4 w-full flex justify-center">
-              { profile?.follower?.includes(myId) ? 
+              { isFollowing ? 
                   <button onClick={handleFollow} className="px-8 py-1 rounded-3xl text-gray-100 bg-gray-500 hover:bg-gray-400 transition">Following</button> :
                   <button onClick={handleFollow} className="px-8 py-1 rounded-3xl text-white bg-primary hover:bg-secondaryLight transition">Follow</button> }
             </div>

@@ -46,7 +46,7 @@ export const uploadProfileImg = (imgFile) => async (dispatch) => {
 export const followUser = (userId) => async (dispatch) => {
   try {
     const { data } = await api.followUser(userId)
-    dispatch({ type: FIND_USER, data })
+    dispatch({ type: 'FIND_USER2', data })
   } catch (error) {
     console.log(error)
   }
