@@ -9,8 +9,6 @@ export const findUserById = (userId) => async (dispatch) => {
     console.log(error)
   }
 }
-<<<<<<< HEAD
-=======
 export const findUserByName = (name) => async (dispatch) => {
   try {
     const { data } = await api.findUser("name", name)
@@ -19,7 +17,6 @@ export const findUserByName = (name) => async (dispatch) => {
     console.log(error)
   }
 }
->>>>>>> develop
 
 export const findMe = (userId) => async (dispatch) => {
   try {

@@ -3,7 +3,7 @@ import axios from 'axios';
 const LOCAL = "http://localhost:5000";
 const HEROKU = "https://vvs-backend.herokuapp.com";
 const DEV = "https://vssapp.com/api"
-const API = axios.create({ baseURL: LOCAL });
+const API = axios.create({ baseURL: DEV });
 
 
 API.interceptors.request.use(async (req) => {
