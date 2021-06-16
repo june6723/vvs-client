@@ -22,13 +22,8 @@ const MyProfile = ({ id }) => {
       <div className="px-16 py-5 border-b border-black">
         <h2 className="text-2xl font-medium">My Profile</h2>
       </div>
-<<<<<<< HEAD
-      <div className="border-b border-gray-400 py-3 flex justify-center" >
-        <div className="grid grid-cols-10 w-2/3 border rounded-lg border-gray-400 p-1" style={{ height:"300px" }}>
-=======
       <div className="mb-5 mt-1 py-3 flex justify-center" >
         <div className="grid grid-cols-10 gap-1 w-2/3 border rounded-lg border-gray-400 p-1" style={{ height:"300px" }}>
->>>>>>> develop
           <div className="col-span-3 h-full bg-gray-200 rounded-lg relative">
             <div className="bg-primaryLight rounded-lg h-2/5"></div>
             <div></div>
@@ -41,13 +36,6 @@ const MyProfile = ({ id }) => {
               <span>Followers ({me?.follower?.length})</span>
             </div>
           </div>
-<<<<<<< HEAD
-          <div className="col-span-4"></div>
-          <div className="col-span-3"></div>
-        </div>
-      </div>
-      <div></div>
-=======
           <div className="col-span-4">
             <div className="flex flex-col h-full">
               <div className="flex h-full items-center justify-center">
@@ -71,7 +59,6 @@ const MyProfile = ({ id }) => {
       <div className="border-t border-gray-400">
         
       </div>
->>>>>>> develop
       { profileImgModal && <ProfileImgModal setProfileImgModal={setProfileImgModal} profileImg={me?.profileImg} /> }
     </div>
   )
